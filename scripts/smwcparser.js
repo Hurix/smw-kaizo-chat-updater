@@ -32,7 +32,7 @@ async function getRomhackInfo_Async(romhackName)
         };
     }
 }
-module.exports = getRomhackInfo_Async;
+exports.getRomhackInfo_Async = getRomhackInfo_Async;
 
 
 function getHtml_Async(romhackName, waiting='')
@@ -92,7 +92,7 @@ function getRomhackInfo_FromHackJson(hack)
     error: null,
     url:  `https://www.smwcentral.net/?p=section&a=details&id=${hack.id}`,
     name: hack.name,
-    exits: hack.raw_fields.length,
+    exits: hack.fields.length,
     type: hack.fields.type,
     author: hack.authors[0].name,
     authors
