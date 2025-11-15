@@ -18,7 +18,9 @@ async function getRomhackInfo_Async(romhackName)
         const error = info.error || {};
         if (error.type === 'no-results')
         {
-            jsondata = await getHtml_Async(romhackName, '&u=1');
+            //wait a bit before trying waiting section to not annoy api
+            await new Promise(resolve => setTimeout(resolve, 80)); 
+            jsondata = await getHtml_Async(romhackName, '&u=1'); //waiting section
             info = getRomhackInfo_FromJson(jsondata, romhackName_Parsed);
         }
 
@@ -92,7 +94,7 @@ function getRomhackInfo_FromHackJson(hack)
     error: null,
     url:  `https://www.smwcentral.net/?p=section&a=details&id=${hack.id}`,
     name: hack.name,
-    exits: hack.fields.length,
+    exits: hack.raw_fields.length,
     type: hack.fields.type,
     author: hack.authors[0].name,
     authors
